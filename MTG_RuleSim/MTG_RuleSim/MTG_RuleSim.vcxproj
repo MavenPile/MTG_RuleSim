@@ -128,9 +128,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
-    <ClInclude Include="SuperType.h" />
+    <ClInclude Include="Supertypes.h" />
     <ClInclude Include="Library.h" />
-    <ClInclude Include="Type.h" />
+    <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />

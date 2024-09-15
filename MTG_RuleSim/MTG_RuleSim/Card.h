@@ -1,19 +1,21 @@
 #pragma once
 #include <vector>
 #include <raylib-cpp.hpp>
-#include <Type.h>
-#include <SuperType.h>
+#include "Types.h"
+#include "Supertypes.h"
 
-class Card
+namespace MTGTyping
 {
-public:
-	std::vector<Type>* m_cardTypes;
-	std::vector<SuperType>* m_cardSuperTypes;
-	raylib::Texture2D* m_texture;
+	class Card
+	{
+	private:
+		std::vector<Type> m_cardTypes;
+		std::vector<Supertype> m_cardSuperTypes;
+		raylib::Texture2D* m_texture;
 
-	std::vector<Type>* GetCardType() { return m_cardTypes; }
-	void AddCardType(Type _type) { m_cardTypes->push_back(_type); }
-	void RemoveCardType(Type _type) {
-		
-	}
-};
+	public:
+		std::vector<Type> GetCardType() { return m_cardTypes; }
+		void AddCardType(Type _type) { m_cardTypes.push_back(_type); }
+		void RemoveCardType(Type _type) {}
+	};
+}
