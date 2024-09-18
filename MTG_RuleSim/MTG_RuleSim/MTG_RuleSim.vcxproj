@@ -128,14 +128,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Supertypes.h" />
     <ClInclude Include="Library.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="Zone.h" />
+    <ClInclude Include="Zones.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="Library.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Zones.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
