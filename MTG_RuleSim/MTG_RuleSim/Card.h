@@ -1,38 +1,47 @@
 #pragma once
 #include <vector>
-//#include <raylib-cpp.hpp>
-//#include "Types.h"
-//#include "Supertypes.h"
-//#include "Zone.h"
-//#include "Player.h"
 
 namespace MTG
 {
 	class Zone;
+
 	class Player;
+
+	class Type;
+	class Supertype;
+	class Subtype;
+	class Colour;
+	class Rarity;
 	
 	class Card
 	{
 	private:
-		//std::vector<Type> m_cardTypes;
-		//std::vector<Supertype> m_cardSuperTypes;
-		//raylib::Texture2D* m_texture;
 
-		const Zone* m_currentZone;
-		const Player* m_owner;
-		Player* m_controller;
 
 	public:
-		//std::vector<Type> GetCardType() { return m_cardTypes; }
-		//void AddCardType(Type _type) { m_cardTypes.push_back(_type); }
-		//void RemoveCardType(Type _type) {}
 
-		virtual void Cast() {}	//	The casting of the spell
+		Zone* m_currentZone;
+		Player* m_owner;
+		Player* m_controller;
+
+		bool t_isCreature;
+
+
+		//	Card typing
+		std::vector<Type&> m_types;
+		std::vector<Supertype&> m_supertypes;
+		std::vector<Subtype&> m_subtypes;
+		std::vector<Colour&> m_colour;
+		Rarity& m_rarity;
+
+	public:
+
+		virtual void Cast();	//	The casting of the spell
 		//	Not pure virtual, because lands are not cast
 
-		virtual void Play() {}	//	Playing a card, mostly only applicable to lands
+		virtual void Play();	//	Playing a card, mostly only applicable to lands
 
-		virtual void Resolve(Zone* targetZone) {}	//	The resolution of the spell
+		virtual void Resolve(Zone* targetZone);	//	The resolution of the spell
 		//	Resolve for nonInstant, nonSorcery cards puts cards in their target zone (battlefield, graveyard, etc)
 		//	Resolve for Instant and Sorcery cards also handles effects
 		//	Lands do not resolve
@@ -50,5 +59,29 @@ namespace MTG
 		virtual void ChangeZone(Zone* targetZone) { m_currentZone = targetZone; }
 
 		virtual void ChangeControl(Player* newController) { m_controller = newController; }
+	};
+
+	class Permanent : public Card
+	{
+	private:
+		Zone* m_currentZone;
+		bool m_isTapped;
+
+
+	public:
+
+		virtual void Tap() { m_isTapped = true; }
+		virtual void Untap() { m_isTapped = false; }
+		virtual bool IsTapped() { return m_isTapped; }
+
+	};
+
+	class NonPermanent : public Card
+	{
+	private:
+		Zone* m_currentZone;
+
+	public:
+
 	};
 }

@@ -5,8 +5,10 @@ namespace MTG
 {
 	class Zone;
 
-	class Divination : public Card
+	class Divination : public NonPermanent
 	{
+	//	2U
+	//	Blue Sorcery
 	//	Draw two cards.
 	private:
 
@@ -18,8 +20,11 @@ namespace MTG
 		}
 	};
 
-	class Harness_Infinity : public Card
+	class Harness_Infinity : public NonPermanent
 	{
+	//	1BBBGGG
+	//	Black Green Instant
+	//	Mythic
 	//	Exchange your hand and graveyard.
 	//	Exile Harness Infinity.
 	
@@ -27,20 +32,13 @@ namespace MTG
 		Zone* m_currentZone;
 
 	public:
-		virtual void Cast() override {}
-		virtual void Resolve(Zone* targetZone) override {
-			//	Exchange the hand and graveyard vectors
-
-			//	Resolution zone is exile now
-			//	Or, the spell kind of sends itself to exile instead of having an exile resolution zone
-			//	That's weird, but doesn't really change anything
-
-
-		}
+		virtual void Resolve(Zone* targetZone);
 	};
 
-	class Quick_Study : public Card
+	class Quick_Study : public NonPermanent
 	{
+		//	2U
+		//	Blue Instant
 		//	Draw two cards.
 
 	private:
@@ -52,7 +50,7 @@ namespace MTG
 		}
 	};
 
-	class Corpse_Knight : public Card
+	class Corpse_Knight : public Permanent
 	{
 		//	WB
 		//	White and Black Creature Zombie Knight
@@ -64,7 +62,7 @@ namespace MTG
 		int m_toughness = 2;
 
 	public:
-		virtual void Resolve();
+		//virtual void Resolve(Zone* targetZone);
 		virtual void ElseEnters(Card* _card) override;
 	};
 }

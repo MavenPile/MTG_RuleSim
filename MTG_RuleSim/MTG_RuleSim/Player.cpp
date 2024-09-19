@@ -4,33 +4,51 @@
 
 namespace MTG
 {
-	Zone& Player::GetHand()
+	Player::~Player()
+	{
+		//	Need to delete owned zones
+		delete m_hand;
+		delete m_library;
+		delete m_graveyard;
+	}
+
+	void Player::Initialise(int _life, std::vector<Card*>* _cards, Zone* _stack)
+	{
+
+	}
+
+	Zone& Player::GetGraveyard() 
+	{
+		return *m_graveyard;
+	}
+		
+	Zone& Player::GetHand() 
 	{
 		return *m_hand;
 	}
 
-	Zone& Player::GetGraveyard()
+	Zone& Player::GetLibrary() 
 	{
-		// TODO: insert return statement here
+		return *m_library;
 	}
 
-	Zone& Player::GetLibrary()
+	Zone& Player::GetBattlefield() 
 	{
-		// TODO: insert return statement here
+		return m_battlefield;
 	}
 
-	Zone& Player::GetExile()
+	Zone& Player::GetCommand() 
 	{
-		// TODO: insert return statement here
+		return m_command;
 	}
 
-	Zone& Player::GetBattlefield()
+	Zone& Player::GetExile() 
 	{
-		// TODO: insert return statement here
+		return m_exile;
 	}
 
-	Zone& Player::GetStack()
+	Zone& Player::GetStack() 
 	{
-		// TODO: insert return statement here
+		return m_stack;
 	}
 }
