@@ -12,6 +12,7 @@ namespace MTG
 	class Subtype;
 	class Colour;
 	class Rarity;
+	class StateManager;
 	
 	class Card
 	{
@@ -33,6 +34,8 @@ namespace MTG
 		std::vector<Subtype&> m_subtypes;
 		std::vector<Colour&> m_colour;
 		Rarity& m_rarity;
+
+		StateManager& stateManager;
 
 	public:
 
