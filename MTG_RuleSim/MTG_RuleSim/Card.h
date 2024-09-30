@@ -16,10 +16,7 @@ namespace MTG
 	
 	class Card
 	{
-	private:
-
-
-	public:
+	protected:
 
 		Zone* m_currentZone;
 		Player* m_owner;
@@ -29,20 +26,26 @@ namespace MTG
 
 
 		//	Card typing
-		std::vector<Type&> m_types;
-		std::vector<Supertype&> m_supertypes;
-		std::vector<Subtype&> m_subtypes;
-		std::vector<Colour&> m_colour;
-		Rarity& m_rarity;
+		std::vector<Type*> m_types;
+		std::vector<Supertype*> m_supertypes;
+		std::vector<Subtype*> m_subtypes;
+		std::vector<Colour*> m_colour;
+		Rarity* m_rarity;
 
-		StateManager& stateManager;
+		StateManager* stateManager;
 
 	public:
+		virtual void Play() = 0;	//	Playing a card, mostly only applicable to lands
 
 		virtual void Cast();	//	The casting of the spell
 		//	Not pure virtual, because lands are not cast
 
-		virtual void Play();	//	Playing a card, mostly only applicable to lands
+		std::vector<Type*>* GetCardTypes() { return &m_types; }
+		bool CheckForCardType(Type* _type) { /*TODO: Search for a card and return a boolean*/ return true; }
+		void RemoveCardType(Type* _type) { /*TODO: Search for a card and remove it*/ }
+		void AddCardType(Type* _type) { m_types.push_back(_type); }
+
+		Player* GetController() { return m_controller; }
 
 		virtual void Resolve(Zone* targetZone);	//	The resolution of the spell
 		//	Resolve for nonInstant, nonSorcery cards puts cards in their target zone (battlefield, graveyard, etc)
@@ -57,16 +60,16 @@ namespace MTG
 
 		virtual void ThisCast() {}
 		virtual void ElseCast(Card* _card) {}
+		 
 
+		virtual void ChangeZone(Zone* _targetZone) { m_currentZone = _targetZone; }
 
-		virtual void ChangeZone(Zone* targetZone) { m_currentZone = targetZone; }
-
-		virtual void ChangeControl(Player* newController) { m_controller = newController; }
+		virtual void ChangeController(Player* _newController) { m_controller = _newController; }
 	};
 
 	class Permanent : public Card
 	{
-	private:
+	protected:
 		Zone* m_currentZone;
 		bool m_isTapped;
 
@@ -81,7 +84,7 @@ namespace MTG
 
 	class NonPermanent : public Card
 	{
-	private:
+	protected:
 		Zone* m_currentZone;
 
 	public:

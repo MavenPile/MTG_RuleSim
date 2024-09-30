@@ -17,6 +17,21 @@ namespace MTG
 
 	}
 
+	int Player::GetHealth()
+	{
+		return m_life;
+	}
+
+	void Player::SetHealth(int newHealth)
+	{
+		m_life = newHealth;
+	}
+
+	std::vector<Player*> Player::GetOpponents()
+	{
+		return std::vector<Player*>();
+	}
+
 	Zone& Player::GetGraveyard() 
 	{
 		return *m_graveyard;
@@ -34,21 +49,21 @@ namespace MTG
 
 	Zone& Player::GetBattlefield() 
 	{
-		return m_battlefield;
+		return *m_battlefield;
 	}
 
 	Zone& Player::GetCommand() 
 	{
-		return m_command;
+		return *m_command;
 	}
 
 	Zone& Player::GetExile() 
 	{
-		return m_exile;
+		return *m_exile;
 	}
 
 	Zone& Player::GetStack() 
 	{
-		return m_stack;
+		return *m_stack;
 	}
 }

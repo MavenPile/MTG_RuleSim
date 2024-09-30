@@ -12,6 +12,7 @@ namespace MTG
 
 	class ZoneManager
 	{
+	private:
 		std::vector<Zone*> m_hands;
 		std::vector<Zone*> m_graveyards;
 		std::vector<Zone*> m_libraries;

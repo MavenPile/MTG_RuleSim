@@ -1,10 +1,15 @@
 #pragma once
 
-namespace MTGTyping
+namespace MTG
 {
 	class Type
 	{
+	protected:
 
+
+	public:
+		Type() {}
+		~Type() {}
 	};
 	
 	class Artifact : public Type

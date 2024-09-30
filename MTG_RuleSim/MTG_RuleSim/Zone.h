@@ -9,34 +9,43 @@ namespace MTG
 	
 	class Zone
 	{
-		//	Zones typically have an owner, and contain a list of cards
-		//	Some zones need to store this list of cards in a different way (like the stack)
-		//	Zones have different rules about the visibility of the cards
-	private:
-
+		//	Zones contain a list of cards
+		//	Zones can be private or shared
+		//	The Zones are the Battlefield, Exile, Graveyard, Hand, Library, Stack, and Command
+	protected:
+		std::vector<Card*>* m_cards;
+		ZoneManager* m_controller;
 	
 	public:
-		std::vector<Card*>& m_cards;
-		ZoneManager* m_controller;
+		Zone() {}
 
-		virtual int CardCount() { return m_cards.size(); }
+
+
+		int GetCardCount() { return m_cards->size(); }
+
+		std::vector<Card*>* GetStoredCards() { return m_cards; }
+		void SetStoredCards(std::vector<Card*>* _cards) { m_cards = _cards; }
 
 		virtual void CardEnters(Card* _card, Zone* fromZone) {}
 		virtual void CardLeaves(Card* _card, Zone* toZone) {}
 	};
 
-	class Private_Zone : Zone
+	class Private_Zone : public Zone
 	{
-	private:
-
+		//	Has an owner
+	protected:
+		Player* m_owner;
 
 	public:
-		Player* m_owner;
+		Private_Zone(Player* _owner) : m_owner(_owner) {}
+
+		Player* GetOwner() { return m_owner; }
 	};
 
-	class Shared_Zone : Zone
+	class Shared_Zone : public Zone
 	{
-	private:
+		//	Does not have an owner
+	protected:
 
 
 	public:
