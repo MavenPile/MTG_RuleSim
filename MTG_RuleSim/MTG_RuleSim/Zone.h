@@ -17,7 +17,7 @@ namespace MTG
 		ZoneManager* m_controller;
 	
 	public:
-		Zone() {}
+		~Zone();
 
 
 

@@ -17,7 +17,7 @@ namespace MTG
 		bool m_initiative;
 		
 		//	Opponents - need to be stored somehow (this might not be the way)
-		std::vector<Player*> m_opponents;
+		std::vector<Player*>* m_opponents;
 
 		//	Private Zones - handled by player
 		Zone* m_graveyard;	
@@ -25,36 +25,48 @@ namespace MTG
 		Zone* m_library;	
 		
 		//	Shared Zones - handled by zone manager
-		Zone* m_battlefield;	
-		Zone* m_command;	
-		Zone* m_exile;	
-		Zone* m_stack;	
+		Zone* battlefield;	
+		Zone* command;	
+		Zone* exile;	
+		Zone* stack;	
 
 	public:
+		//	Player Methods
 		~Player();
 
+		void Initialise(int _life, std::vector<Card*>* _cards, Zone* _stack);
+
+		//	Private Zone Methods
+		Zone* GetGraveyard() { return m_graveyard; }
+		Zone* GetHand() { return m_hand; }
+		Zone* GetLibrary() { return m_library; }
 		void SetGraveyard(Zone* _graveyard) { m_graveyard = _graveyard; }
 		void SetHand(Zone* _hand) { m_hand = _hand; }
 		void SetLibrary(Zone* _library) { m_library = _library; }
-		void SetBattlefield(Zone* _battlefield) { m_battlefield = _battlefield; }
-		void SetCommand(Zone* _command) { m_command = _command; }
-		void SetExile(Zone* _exile) { m_exile = _exile; }
-		void SetStack(Zone* _stack) { m_stack = _stack; }
-		
-		void Initialise(int _life, std::vector<Card*>* _cards, Zone* _stack);
 
-		int GetHealth();
-		void SetHealth(int newHealth);
+		//	Shared Zone Methods
+		Zone* GetBattlefield() { return battlefield; }
+		Zone* GetCommand() { return command; }
+		Zone* GetExile() { return exile; }
+		Zone* GetStack() { return stack; }		
+		void SetBattlefield(Zone* _battlefield) { battlefield = _battlefield; }
+		void SetCommand(Zone* _command) { command = _command; }
+		void SetExile(Zone* _exile) { exile = _exile; }
+		void SetStack(Zone* _stack) { stack = _stack; }
 
-		std::vector<Player*> GetOpponents();
+		//	Opponent Methods
+		std::vector<Player*>* GetOpponents() { return m_opponents; }
+		void AddOpponent(Player* _opponent) { m_opponents->push_back(_opponent); }
+		void RemoveOpponent(Player* _opponent);
 
-		Zone& GetGraveyard();
-		Zone& GetHand();
-		Zone& GetLibrary();
+		//	Life Methods
+		int GetLife() { return m_life; }
+		void SetLife(int _life) { m_life = _life; }
+		void AddLife(int _life) { m_life += _life; }
+		void LoseLife(int _life) { m_life -= _life; }
 
-		Zone& GetBattlefield();
-		Zone& GetCommand();
-		Zone& GetExile();
-		Zone& GetStack();
+
+
+
 	};
 }

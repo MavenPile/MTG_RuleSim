@@ -13,9 +13,9 @@ namespace MTG
 	class ZoneManager
 	{
 	private:
-		std::vector<Zone*> m_hands;
-		std::vector<Zone*> m_graveyards;
-		std::vector<Zone*> m_libraries;
+		std::vector<Zone*>* m_hands;
+		std::vector<Zone*>* m_graveyards;
+		std::vector<Zone*>* m_libraries;
 
 		Stack* m_stack;
 		Battlefield* m_battlefield;
@@ -23,7 +23,7 @@ namespace MTG
 		Command* m_command;
 
 	public:
-		ZoneManager();
+		ZoneManager() {}
 		~ZoneManager() { delete m_stack, delete m_battlefield, delete m_exile, delete m_command; }
 
 		void Initialise(Player* _p1, Player* _p2, Player* _p3, Player* _p4);

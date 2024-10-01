@@ -147,6 +147,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Zone.cpp" />
     <ClCompile Include="ZoneManager.cpp" />
     <ClCompile Include="Zones.cpp" />
   </ItemGroup>

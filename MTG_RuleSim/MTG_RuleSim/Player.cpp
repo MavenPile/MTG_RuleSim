@@ -17,53 +17,10 @@ namespace MTG
 
 	}
 
-	int Player::GetHealth()
+	void Player::RemoveOpponent(Player* _opponent)
 	{
-		return m_life;
+		//	TODO: Search m_opponents and remove _opponent
 	}
 
-	void Player::SetHealth(int newHealth)
-	{
-		m_life = newHealth;
-	}
 
-	std::vector<Player*> Player::GetOpponents()
-	{
-		return std::vector<Player*>();
-	}
-
-	Zone& Player::GetGraveyard() 
-	{
-		return *m_graveyard;
-	}
-		
-	Zone& Player::GetHand() 
-	{
-		return *m_hand;
-	}
-
-	Zone& Player::GetLibrary() 
-	{
-		return *m_library;
-	}
-
-	Zone& Player::GetBattlefield() 
-	{
-		return *m_battlefield;
-	}
-
-	Zone& Player::GetCommand() 
-	{
-		return *m_command;
-	}
-
-	Zone& Player::GetExile() 
-	{
-		return *m_exile;
-	}
-
-	Zone& Player::GetStack() 
-	{
-		return *m_stack;
-	}
 }
