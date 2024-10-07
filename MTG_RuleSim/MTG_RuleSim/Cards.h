@@ -5,6 +5,29 @@ namespace MTG
 {
 	class Zone;
 
+	class Plains : public Permanent {
+	public:
+		virtual bool Play() override;
+
+		virtual bool Tap() override;
+	};
+
+	class Island : public Permanent {
+
+	};
+
+	class Swamp : public Permanent {
+
+	};
+
+	class Mountain : public Permanent {
+
+	};
+
+	class Forest : public Permanent {
+
+	};
+
 	class Divination : public NonPermanent
 	{
 	//	2U

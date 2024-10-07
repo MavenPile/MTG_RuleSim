@@ -35,7 +35,7 @@ namespace MTG
 		StateManager* stateManager;
 
 	public:
-		virtual void Play() = 0;	//	Playing a card, mostly only applicable to lands
+		virtual bool Play() = 0;	//	Playing a card, mostly only applicable to lands
 
 		virtual void Cast();	//	The casting of the spell
 		//	Not pure virtual, because lands are not cast
@@ -52,10 +52,10 @@ namespace MTG
 		//	Resolve for Instant and Sorcery cards also handles effects
 		//	Lands do not resolve
 
-		virtual void ThisEnters() {}
+		virtual void ThisEnters() {m_currentZone->CardEnters(this) }
 		virtual void ElseEnters(Card* _card) {}
 
-		virtual void ThisLeaves() {}
+		virtual void ThisLeaves() { m_currentZone->CardLeaves(this, m_owner->GetGraveyard()); }
 		virtual void ElseLeaves(Card* _card) {}
 
 		virtual void ThisCast() {}
@@ -76,7 +76,7 @@ namespace MTG
 
 	public:
 
-		virtual void Tap() { m_isTapped = true; }
+		virtual bool Tap() { m_isTapped = true; }
 		virtual void Untap() { m_isTapped = false; }
 		virtual bool IsTapped() { return m_isTapped; }
 

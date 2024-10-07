@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Player.h"
+#include "ZoneManager.h"
 
 namespace MTG
 {
@@ -7,6 +9,15 @@ namespace MTG
 	}
 
 	Game::~Game() {
+		for (Player* p : m_players) {
+			delete p;
+		}
+
+		delete m_zoneManager;
+	}
+
+	void Game::Initialise()
+	{
 
 	}
 

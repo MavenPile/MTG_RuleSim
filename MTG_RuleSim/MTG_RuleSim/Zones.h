@@ -7,7 +7,7 @@ namespace MTG
 	class Battlefield : public Shared_Zone
 	{
 		//	All cards are public to all players
-		//	Some cards may be face-down, known only to the owning(?) player
+		//	Some cards may be fa ce-down, known only to the owning(?) player
 	private:
 		std::vector<Card*> m_cards;
 

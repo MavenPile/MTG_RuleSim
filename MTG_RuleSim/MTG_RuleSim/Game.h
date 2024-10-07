@@ -1,10 +1,13 @@
 #pragma once
 #include <vector>
-#include "Player.h"
-#include "ZoneManager.h"
+//#include "Player.h"
+//#include "ZoneManager.h"
 
 namespace MTG
 {
+	class Player;
+	class ZoneManager;
+	
 	class Game
 	{
 	private:
@@ -17,6 +20,8 @@ namespace MTG
 		~Game();
 
 		void AddPlayer(Player* _player) { m_players.push_back(_player); }
+
+		void Initialise();
 
 		void Run();
 	};

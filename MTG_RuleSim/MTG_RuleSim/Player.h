@@ -37,7 +37,7 @@ namespace MTG
 		void Initialise(int _life, std::vector<Card*>* _cards, Zone* _stack);
 
 		//	Private Zone Methods
-		Zone* GetGraveyard() { return m_graveyard; }
+		Zone* GetGraveyard() { return m_graveyard; }	//	Zone* to player's graveyard
 		Zone* GetHand() { return m_hand; }
 		Zone* GetLibrary() { return m_library; }
 		void SetGraveyard(Zone* _graveyard) { m_graveyard = _graveyard; }
